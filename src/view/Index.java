@@ -108,7 +108,7 @@ public class Index {
 	}
 	 
 	private static void caixas(String[][] mapa, Personagem p, JTextArea apresentarMapa) {
-		String[] op = {"Cima", "Baixo", "Esquerda", "Direita", "Quebrar caixa"};
+		String[] op = {"↑", "↓", "←", "→", "Quebrar caixa"};
 		
 		int jogo = JOptionPane.showOptionDialog(null, apresentarMapa, "Jogo", 0, JOptionPane.PLAIN_MESSAGE, null, op, op[0]);
 		

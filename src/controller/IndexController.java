@@ -324,32 +324,17 @@ public class IndexController {
 	        inimigos[i] = new Inimigo(x, y);
 	        mapa[x][y] = "E";
 	    }
-	    
-	    System.out.println("=== APÓS GERAR INIMIGOS ===");
-	    System.out.println("Array inimigos: " + inimigos);
-	    System.out.println("Tamanho: " + inimigos.length);
-	    for (int i = 0; i < inimigos.length; i++) {
-	        System.out.println("Inimigo " + i + ": [" + inimigos[i].getPosicaox() + "][" + inimigos[i].getPosicaoy() + "]");
-	    }
 
+	    
 	    return inimigos;
 	}
 	
 	public void moverInimigos(String[][] mapa, Personagem p) {
-	    System.out.println("\n=== MOVER INIMIGOS CHAMADO ===");
-	    System.out.println("Array inimigos: " + inimigos);
-	    System.out.println("Tamanho: " + (inimigos == null ? "null" : inimigos.length));
-	    
-	    if (inimigos == null || inimigos.length == 0) {
-	        System.out.println("SAINDO: Array vazio ou null");
-	        return;
-	    }
 	    Random r = new Random();
 
 	    for (Inimigo inimigo : inimigos) {
 	        boolean moveu = false;
 
-	        // Tenta até 4 vezes encontrar uma direção válida
 	        for (int tentativas = 0; tentativas < 4 && !moveu; tentativas++) {
 	            int direcao = r.nextInt(4);
 
@@ -363,23 +348,19 @@ public class IndexController {
 	                case 3 -> novoY++;
 	            }
 
-	            // 1. Verifica se está dentro do mapa
 	            if (novoX < 0 || novoY < 0 || 
 	                novoX >= mapa.length || novoY >= mapa[0].length) {
 	                continue;
 	            }
 
-	            // 2. Verifica se encontrou o jogador (ANTES de verificar se é ".")
 	            if (novoX == p.getPosicaox() && novoY == p.getPosicaoy()) {
 	                energia(p, 0);
 	            }
 
-	            // 3. Verifica se a posição está livre
 	            if (!mapa[novoX][novoY].equals(".")) {
 	                continue;
 	            }
 
-	            // 4. Move o inimigo
 	            mapa[inimigo.getPosicaox()][inimigo.getPosicaoy()] = ".";
 	            inimigo.setPosicaox(novoX);
 	            inimigo.setPosicaoy(novoY);
